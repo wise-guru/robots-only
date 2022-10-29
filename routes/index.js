@@ -2,27 +2,33 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 const messageController = require("../controllers/messageController");
+const authenitcationController = require("../controllers/authenticationController");
+const indexController = require("../controllers/indexController");
 
-// Messages routes
-router.get("/", messageController.get_messages);
+// Index routes
+router.get("/", indexController.index);
+router.post("/", messageController.delete_message_post);
 
-router.post("/", messageController.post_messages);
+// Sign up routes
 
-router.get("/:id/delete", messageController.delete_msgs);
+router.get("/sign-up", authenitcationController.get_signup);
+router.post("/sign-up", authenitcationController.post_signup);
 
-// User routes
-router.get("/log-in", userController.get_login);
+router.get("/create-message", messageController.create_get_message);
+router.post("/create-message", messageController.create_message_post);
 
-router.post("/log-in", userController.post_login);
+//Log-in, log-out routes
+router.get("/log-in", authenitcationController.get_login);
+router.post("/log-in", authenitcationController.post_login);
+router.get("log-out", authenitcationController.get_logout);
 
-router.get("/log-out", userController.get_logout);
+//Member routes
 
-router.get("/sign-up", userController.get_signup);
+router.get("/member", userController.get_member);
+router.post("/member", userController.post_member);
 
-router.post("/sign-up", userController.post_signup);
-
-router.post("/join", userController.join_post);
-
-router.get("/join", userController.join_get);
+//Admin routes
+router.get("/admin", userController.get_admin);
+router.post("/admin", userController.post_admin);
 
 module.exports = router;
