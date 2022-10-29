@@ -7,7 +7,7 @@ const MessageSchema = new Schema({
   date: { default: Date.now(), type: Date },
 });
 
-MessageSchema.virtual("date_formated").get(function () {
+MessageSchema.virtual("date_formatted").get(function () {
   return this.date.toLocaleDateString("en-gb", {
     year: "numeric",
     month: "short",
