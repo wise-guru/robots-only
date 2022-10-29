@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('header'); -%>
+   <div class="container">
+    <% if (currentUser) { %> 
+      <h1>Welcome <%=currentUser.username %></h1>
+      <form>
+        <textarea name="text" placeholder="What's on your mind?" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <% if (messages) { %>
+        <div class="messages">
+          <% for(var i=0; i<messages.length; i++) { %>
+            <div class="message">
+              <% if(currentUser.role === 'Member') { %>
+                <p><strong>@!<%=msg.user.username%></strong></p>
+                <p><em><%=msg.text %></em></p>
+                <p class="date"><em><%=msg.date_formatted%></em></p>
+              <% } else if(currentUser.role === 'Admin') { %>
+                <div class="user-and-delete">
+                  <p><strong>@<%=msg.user.username %></strong></p>
+                  <form method="get" action="/<%=msg._id%>delete"></form>
+                    <button>Delete</button>
+                  </form>
+                </div>
+                <p><em><%=msg.text%></em></p>
+                <p class="date"><em><%=msg.date_formatted %></em></p>
+              <% } else { %>
+                <p><a href="/join">Become a member to view the author</a></p>
+                <p class="date"><a href="/join">Some point in time</a></p>
+                <% } %>
+            </div>
+         <% } %>
+        </div>
+      <% } %>
+    <% } else { %>
+      <% if (messages) { %>
+        <div class="messages">
+          <% for(var i=0; i < messages.length; i++) { %>
+            <div class="message">
+              <a href="/log-in">Log in or</a>
+              <a href="/sign-up">Register to view content</a>
+            </div>
+         <% } %>
+        </div>  
+    <% } %>
+    <% } %>
+   </div>
+  </body>
+</html>
