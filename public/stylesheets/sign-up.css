@@ -1,0 +1,32 @@
+
+.avatar {
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
+  }
+  
+  /* HIDE RADIO */
+    [type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* IMAGE STYLES */
+    [type=radio] + label img {
+    cursor: pointer;
+  }
+
+  [type=radio]:hover + label img {
+    outline: 2px solid #f00;
+  }
+
+  [type=radio]:active + label img {
+    transform: scale(0.98);
+  }
+
+  /* CHECKED STYLES */
+    [type=radio]:checked + label img {
+    outline: 2px solid #f00;
+  }
