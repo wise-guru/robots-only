@@ -1,35 +1,104 @@
-const Message = require("../models/message");
+const User = require("../models/user");
+const { body, validationResult } = require("express-validator");
 
-exports.get_messages = async (req, res, next) => {
-  try {
-    const messages = await Message.find({}).sort({ date: "desc" });
-    if (!messages) {
-      return next("messages not found");
-    }
-    res.render("index", { user: req.user, messages: messages });
-  } catch (err) {
-    return next(err);
+exports.get_member = (req, res, next) => {
+  if (!res.locals.currentUser) {
+    // User cannot access the members form unless logged in
+    return res.redirect("/log-in");
   }
-};
-
-exports.post_messages = (req, res, next) => {
-  const message = new Message({
-    user: req.user,
-    text: req.body.text,
-  });
-  message.save((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
+  return res.render("member_form", {
+    title: "Become a Member",
+    user: res.locals.currentUser,
   });
 };
 
-exports.delete_msgs = async (req, res, next) => {
-  try {
-    await Message.findByIdAndDelete(req.params.id);
-  } catch (err) {
-    return next(err);
+exports.post_member = [
+  body("passcode")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Passcode must be specified."),
+
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      // If there is an error submitting the member validation form, re-render the form with an error
+      return res.render("member_form", {
+        title: "Become a Member",
+        user: res.locals.currentUser,
+        errors: errors.array(),
+      });
+    } else if (req.body.passcode != process.env.MEMBER_PASSCODE) {
+      return res.render("member_form", {
+        title: "Become a Member",
+        user: res.locals.currentUser,
+        passcodeError: "Wrong Passcode",
+      });
+    }
+
+    const user = new User(res.locals.currentUser);
+    user.member = true;
+
+    await User.findByIdAndUpdate(
+      res.locals.currentUser._id,
+      user,
+      {},
+      (err) => {
+        if (err) return next(err);
+        return res.redirect("/member");
+      }
+    );
+  },
+];
+
+exports.get_admin = (req, res, next) => {
+  if (!res.locals.currentUser) {
+    // User cannot access the members form unless logged in
+    return res.redirect("/log-in");
   }
-  res.redirect("/");
+  return res.render("admin_form", {
+    title: "Become an Admin",
+    user: res.locals.currentUser,
+  });
 };
+
+exports.post_admin = [
+  body("passcode")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Passcode must be specified."),
+
+  async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      // If there is an error submitting the member validation form, re-render the form with an error
+      return res.render("admin_form", {
+        title: "Become an Admin",
+        user: res.locals.currentUser,
+        errors: errors.array(),
+      });
+    } else if (req.body.passcode != process.env.ADMIN_PASSCODE) {
+      return res.render("admin_form", {
+        title: "Become an Admin",
+        user: res.locals.currentUser,
+        passcodeError: "Wrong Passcode",
+      });
+    }
+
+    const user = new User(res.locals.currentUser);
+    user.admin = true;
+
+    await User.findByIdAndUpdate(
+      res.locals.currentUser._id,
+      user,
+      {},
+      (err) => {
+        if (err) return next(err);
+        return res.redirect("/");
+      }
+    );
+  },
+];
