@@ -3,53 +3,129 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
     <%- include('header'); -%>
    <div class="container">
-    <% if (currentUser) { %> 
-      <h1>Welcome <%=currentUser.username %></h1>
-      <form>
-        <textarea name="text" placeholder="What's on your mind?" required></textarea>
-        <button type="submit">Send</button>
-      </form>
       <% if (messages) { %>
-        <div class="messages">
-          <% for(var i=0; i<messages.length; i++) { %>
-            <div class="message">
-              <% if(currentUser.role === 'Member') { %>
-                <p><strong>@!<%=msg.user.username%></strong></p>
-                <p><em><%=msg.text %></em></p>
-                <p class="date"><em><%=msg.date_formatted%></em></p>
-              <% } else if(currentUser.role === 'Admin') { %>
-                <div class="user-and-delete">
-                  <p><strong>@<%=msg.user.username %></strong></p>
-                  <form method="get" action="/<%=msg._id%>delete"></form>
-                    <button>Delete</button>
-                  </form>
+        <div class="messages-container">
+          <% if (!user || !user.member){ %>
+            <h2>Signed out</h2>
+            <div class="message-container">
+              <div class="message-container-inner-left">
+                <div class="inner-avatar"></div>
+              </div>
+              <div class="inner-right">
+                <h4 class="message-title">Hello, world!</h4>
+                <p class="message-text">To see additional information, register an account and log in, then answer a question to become a member of Robots Only!</p>
+                <div class="message-info">
+                  <div class="avatar-icon"></div>
+                  <p>Posted by <span class="username">Courtney Gears</span></p>
+                  <p class="date">Some point in time</p>
                 </div>
-                <p><em><%=msg.text%></em></p>
-                <p class="date"><em><%=msg.date_formatted %></em></p>
-              <% } else { %>
-                <p><a href="/join">Become a member to view the author</a></p>
-                <p class="date"><a href="/join">Some point in time</a></p>
-                <% } %>
+              </div>
             </div>
-         <% } %>
+          <% } %>
+
+          <% for(var i = 0; i < messages.length; i++) { %>
+            <div class="message-container">
+              <div class="inner-left">
+                <% if(!user || !user.member) { %>
+                  <h1>Signed out</h1>
+                  <div class="inner-avatar anon">
+                    <img src="/images/courtney.png">
+                  </div>
+                <% } else { %>
+                  <% if(user && user.member) { %>
+                    <h1>Signed in</h1>
+                    <div class="inner-avatar">
+                      <% if(messages[i].user.avatar === "courtney") { %>
+                        <img src="/images/courtney.png">
+                      <% } if(messages[i].user.avatar === "baymax") { %>
+                        <img src="/images/baymax.png">
+                      <% } if(messages[i].user.avatar === "bender") { %>
+                        <img src="/images/bender.jpeg">
+                      <% } if(messages[i].user.avatar === "clank") { %>
+                        <img src="/images/clank.webp">
+                      <% } if(messages[i].user.avatar === "r2d2") { %>
+                        <img src="/images/r2d2.jpg">
+                      <% } if(messages[i].user.avatar === "wall-e") { %>
+                        <img src="/images/wall-e.png">
+                        <% } %>
+                    </div>
+                  <% } %>
+                <% } %>
+              </div>
+
+              <div class="inner-right">
+                <% if(user && user.member) { %>
+                  <h2>Signed in</h2>
+                  <h4 class="message-title"><%= messages[i].title %></h4>
+                  <p class="message-text"><%= messages[i].text %></p>
+                  <div class="message-info">
+                    <% if(user && user.member) { %>
+                      <div class="avatar-icon">
+                        <% if(messages[i].user.avatar === "courtney") { %>
+                          <img src="/images/courtney.png">
+                        <% } if(messages[i].user.avatar === "baymax") { %>
+                          <img src="/images/baymax.png">
+                        <% } if(messages[i].user.avatar === "bender") { %>
+                          <img src="/images/bender.jpeg">
+                        <% } if(messages[i].user.avatar === "clank") { %>
+                          <img src="/images/clank.webp">
+                        <% } if(messages[i].user.avatar === "r2d2") { %>
+                          <img src="/images/r2d2.jpg">
+                        <% } if(messages[i].user.avatar === "wall-e") { %>
+                          <img src="/images/wall-e.png">
+                          <% } %>
+                      </div>
+                   <% } %>
+                    <p>Posted by<span><%= messages[i].user.username %></span></p>
+                    <p class="message-date"><%= messages[i].date %></p>
+                  </div>
+                <% } else { %>
+                  <h4 class="message-title"><%= messages[i].title %></h4>
+                  <p class="message-text"><%= messages[i].text %></p>
+                  <div>
+                    <% if(user && user.member) { %>
+                      <h1>Signed in</h1>
+                      <div class="avatar-icon">
+                        <% if(messages[i].user.avatar === "courtney") { %>
+                          <img src="/images/courtney.png">
+                        <% } if(messages[i].user.avatar === "baymax") { %>
+                          <img src="/images/baymax.png">
+                        <% } if(messages[i].user.avatar === "bender") { %>
+                          <img src="/images/bender.jpeg">
+                        <% } if(messages[i].user.avatar === "clank") { %>
+                          <img src="/images/clank.webp">
+                        <% } if(messages[i].user.avatar === "r2d2") { %>
+                          <img src="/images/r2d2.jpg">
+                        <% } if(messages[i].user.avatar === "wall-e") { %>
+                          <img src="/images/wall-e.png">
+                          <% } %>
+                      </div>
+                    <% } else { %>
+                      <div class="avatar-icon anon"></div>
+                    <% } %>
+                    <p>Posted by <span class="message-username">Anonymous</span></p>
+                    <p>Date: Some point in time</p>
+                  </div>
+                <% } %>
+                <% if(user && user.admin) { %>
+                  <h1>Signed in</h1>
+                  <div class="delete-message">
+                    <form action="" method="POST">
+                      <input id="messageID" type="hidden" name="messageId" required value="messsage._id">
+                      <button type="submit">Delete</button>
+                    </form>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          <% } %>
         </div>
       <% } %>
-    <% } else { %>
-      <% if (messages) { %>
-        <div class="messages">
-          <% for(var i=0; i < messages.length; i++) { %>
-            <div class="message">
-              <a href="/log-in">Log in or</a>
-              <a href="/sign-up">Register to view content</a>
-            </div>
-         <% } %>
-        </div>  
-    <% } %>
-    <% } %>
    </div>
   </body>
 </html>

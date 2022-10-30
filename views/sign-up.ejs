@@ -11,49 +11,49 @@
   <%- include('header'); -%>
   <main class="sign-up container">
   <h1>Sign Up</h1>
-  <div>Already registered? <a href="">Log in</a></div>
+  <div>Already registered? <a href="/log-in">Log in</a></div>
   <div class="">
-  <form action="/sign-up" method="POST">
+  <form method="post" action="/sign-up">
     <div>
     <label for="username">Username</label>
-    <input name="username" placeholder="username" type="text" />
+    <input name="username" placeholder="username" type="text" required/>
     </div>
 
     <div>
     <label for="password">Password</label>
-    <input name="password" type="password" />
+    <input name="password" type="password" required/>
     </div>
 
     <div>
       <label for="password">Confirm Password</label>
-      <input name="password" type="password" />
+      <input name="confirmPassword" type="password" required/>
     </div>
     <div class="avatar-container">
       <div>Select an avatar:</div>
   
     <div class="avatars">
-      <input type="radio" name="avatar" id="clank" />
+      <input type="radio" name="avatar" id="clank" value="clank"/>
     <label for="clank" class="avatar-box">
       <img src="/images/clank.webp" alt="Clank" class="avatar"/>
     </label>
-    <input type="radio" name="avatar" id="baymax">
+    <input type="radio" name="avatar" id="baymax" value="baymax" required>
     <label for="baymax"><img src="/images/baymax.png" alt="Baymax" class="avatar"></label>
     
-    <input type="radio" name="avatar" id="bender">
+    <input type="radio" name="avatar" id="bender" value="bender" required>
     <label for="bender"><img src="/images/bender.jpeg" alt="Bender" class="avatar"></label>
     
-    <input type="radio" name="avatar" id="r2d2">
+    <input type="radio" name="avatar" id="r2d2" value="r2d2" required>
     <label for="r2d2"><img src="/images/r2d2.jpg" alt="R2-D2" class="avatar"></label>
     
-    <input type="radio" name="avatar" id="wall-e">
+    <input type="radio" name="avatar" id="wall-e" value="wall-e" required>
     <label for="wall-e"><img src="/images/wall-e.png" alt="wall-E" class="avatar"></label>
     
-    <input type="radio" name="avatar" id="courtney">
+    <input type="radio" name="avatar" id="courtney" value="courtney" required>
     <label for="courtney"><img src="/images/courtney.png" alt="Courtney Gears" class="avatar"></label>
     </div>
 
     <div>
-      <button type="submit">Sign Up</button>
+      <button >Sign Up</button>
     </div>
     </div>
   
