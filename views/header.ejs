@@ -13,6 +13,18 @@
             <img src="/images/robot.svg" height="48px" width="48px">
             <div>Robots Only</div>
         </div>
+        <ul>
+        <% if(!user) { %>
+            <li><a href="/log-in">Log in</a></li>
+            <li><a href="/sign-up">Sign up</a></li>
+        <% } else { %>
+            <li><a href="/create-message">Create Message</a></li>
+            <li><a href="/member">Member</a></li>
+            <li><a href="/admin">Admin</a></li>
+            <li><a href="/log-out">Log out</a></li>
+            <!-- <li><a href=""></a></li> -->
+        <% } %>
+        </ul>
     </header>
 </body>
 </html>
