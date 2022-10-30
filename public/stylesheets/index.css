@@ -1,0 +1,33 @@
+/* 
+.baymax {
+    background-image: url("../images/baymax.png");
+}
+
+.bender {
+    background-image: url("../images/bender.jpeg");
+}
+
+.clank {
+    background-image: url("../images/clank.webp");
+}
+
+.courtney, .anon {
+    background-image: url("../images/courtney.png");
+    background-position: center;
+    width: 48px;
+    height: 48px;
+}
+
+.r2d2 {
+    background-image: url("../images/r2d2.jpg");
+}
+
+.wall-e {
+    background-image: url("../images/wall-e.png");
+} */
+
+.inner-avatar img {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+  }
