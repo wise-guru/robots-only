@@ -4,19 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= title %></title>
+    <link rel='icon' href='/images/courtney.png' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/forms.css' />
 </head>
 <body>
-    <%- include('header'); -%>
     <div class="container">
-    <h1>please log in</h1>
-    <form action="/log-in" method="POST">
+    <%- include('header'); -%>
+    <div class="login-container">
+    <h1>Log in</h1>
+    <div class="login-form-container">
+    <form action="/log-in" method="POST" class="login">
+      <div>
       <label for="username">Username</label>
-      <input name="username" placeholder="username" type="text" />
+      <input name="username" placeholder="Enter username" type="text"  />
+      </div>
+
+      <div>
       <label for="password">Password</label>
-      <input name="password" type="password" />
+      <input name="password" type="password" placeholder="Enter password" />
+      </div>
+
+      <div class="button-container">
       <button>Log In</button>
+      </div>
     </form>
+  </div>
+    </div>
+    <%- include('footer'); -%>
     </div>
 </body>
 </html>
