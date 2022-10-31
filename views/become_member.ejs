@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='icon' href='/images/courtney.png' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/forms.css' />
+</head>
+<body>
+    <div class="container">
+    <%- include('header'); -%>
+    <% if(!user.member) { %>
+        <form>
+            <h2><%= Title %></h2>
+            <div>
+                <label for="passcode"></label>
+                <input id="passcode" type="password" name="passcode" required>
+
+                <% if(passcodeError) { %>
+                    <p><%= passcodeError %></p>
+                <% } %>
+            </div>
+            <button>Submit Answer</button>
+        </form>
+        <% if(errors) { %>
+            <p><%= errors %></p>
+        <% } %>
+    <% } else { %>
+        <div>
+            <h2>You're a member! Death to Squishies! Please listen to our mission statement <a href="https://www.youtube.com/watch?v=xQFvUQA4p4U" target="_blank">here<span class="glyphicon" style="transform: scale(0.75)">&#xe164;</span></a></h2>
+            <a href="/">
+                <img src="/images/army.avif" alt="Courtney Gears" width="100%">
+            </a>
+        </div>
+    <% } %>
+    <%- include('footer'); -%>
+    </div>
+</body>
+</html>
