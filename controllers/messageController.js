@@ -6,7 +6,7 @@ exports.create_get_message = (req, res, next) => {
     // Users not logged in cannot access "create a message page"
     return res.redirect("/log-in");
   }
-  res.render("message_form", {
+  res.render("create_message", {
     title: "Create a Message",
     user: res.locals.currentUser,
   });
@@ -26,7 +26,7 @@ exports.create_message_post = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      res.render("message_form", {
+      res.render("create_message", {
         title: "Create a Message",
         errors: errors.array(),
       });
@@ -36,7 +36,7 @@ exports.create_message_post = [
       user: req.user._id,
       title: req.body.messageTitle,
       text: req.body.messageText,
-      timestamp: Date.now(),
+      date: Date.now(),
     });
 
     await message.save((err) => {
