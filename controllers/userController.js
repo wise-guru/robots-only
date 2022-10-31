@@ -6,7 +6,7 @@ exports.get_member = (req, res, next) => {
     // User cannot access the members form unless logged in
     return res.redirect("/log-in");
   }
-  return res.render("member_form", {
+  return res.render("become_member", {
     title: "Become a Member",
     user: res.locals.currentUser,
   });
@@ -24,13 +24,13 @@ exports.post_member = [
 
     if (!errors.isEmpty()) {
       // If there is an error submitting the member validation form, re-render the form with an error
-      return res.render("member_form", {
+      return res.render("become_member", {
         title: "Become a Member",
         user: res.locals.currentUser,
         errors: errors.array(),
       });
     } else if (req.body.passcode != process.env.MEMBER_PASSCODE) {
-      return res.render("member_form", {
+      return res.render("become_member", {
         title: "Become a Member",
         user: res.locals.currentUser,
         passcodeError: "Wrong Passcode",
@@ -57,7 +57,7 @@ exports.get_admin = (req, res, next) => {
     // User cannot access the members form unless logged in
     return res.redirect("/log-in");
   }
-  return res.render("admin_form", {
+  return res.render("become_admin", {
     title: "Become an Admin",
     user: res.locals.currentUser,
   });
@@ -75,13 +75,13 @@ exports.post_admin = [
 
     if (!errors.isEmpty()) {
       // If there is an error submitting the member validation form, re-render the form with an error
-      return res.render("admin_form", {
+      return res.render("become_admin", {
         title: "Become an Admin",
         user: res.locals.currentUser,
         errors: errors.array(),
       });
     } else if (req.body.passcode != process.env.ADMIN_PASSCODE) {
-      return res.render("admin_form", {
+      return res.render("become_admin", {
         title: "Become an Admin",
         user: res.locals.currentUser,
         passcodeError: "Wrong Passcode",
