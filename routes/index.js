@@ -14,18 +14,19 @@ router.post("/", messageController.delete_message_post);
 router.get("/sign-up", authenticationController.get_signup);
 router.post("/sign-up", authenticationController.post_signup);
 
-router.get("/create-message", messageController.create_get_message);
-router.post("/create-message", messageController.create_message_post);
-
 //Log-in, log-out routes
 router.get("/log-in", authenticationController.get_login);
 router.post("/log-in", authenticationController.post_login);
-router.get("log-out", authenticationController.get_logout);
+router.get("/log-out", authenticationController.get_logout);
 
 //Member routes
 
 router.get("/member", userController.get_member);
 router.post("/member", userController.post_member);
+
+//Message routes
+router.get("/create-message", messageController.create_get_message);
+router.post("/create-message", messageController.create_message_post);
 
 //Admin routes
 router.get("/admin", userController.get_admin);
