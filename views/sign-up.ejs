@@ -4,32 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
+  <link rel='icon' href='/images/courtney.png' />
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel='stylesheet' href='/stylesheets/sign-up.css' />
+  <link rel='stylesheet' href='/stylesheets/forms.css' />
 </head>
 <body>
-  <%- include('header'); -%>
   <main class="sign-up container">
+  <%- include('header'); -%>
+  <div class="container">
   <h1>Sign Up</h1>
   <div>Already registered? <a href="/log-in">Log in</a></div>
-  <div class="">
   <form method="post" action="/sign-up">
     <div>
     <label for="username">Username</label>
-    <input name="username" placeholder="username" type="text" required/>
+    <input name="username" placeholder="Enter username" type="text" required/>
     </div>
 
     <div>
     <label for="password">Password</label>
-    <input name="password" type="password" required/>
+    <input name="password" type="password" required placeholder="Enter password"/>
     </div>
 
     <div>
       <label for="password">Confirm Password</label>
-      <input name="confirmPassword" type="password" required/>
+      <input name="confirmPassword" type="password" required class="Enter password again"/>
     </div>
     <div class="avatar-container">
-      <div>Select an avatar:</div>
+      <div class="avatar-select-text">Select an avatar:</div>
   
     <div class="avatars">
       <input type="radio" name="avatar" id="clank" value="clank"/>
@@ -51,16 +53,16 @@
     <input type="radio" name="avatar" id="courtney" value="courtney" required>
     <label for="courtney"><img src="/images/courtney.png" alt="Courtney Gears" class="avatar"></label>
     </div>
-
-    <div>
+    </div>
+    <div class="button-container">
       <button >Sign Up</button>
     </div>
-    </div>
-  
-    
-
   </form>
   </div>
+  </div>
+</div>
+<%- include('footer'); -%>
+</div>
   </main>
 </body>
 </html>
