@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel='icon' href='/images/courtney.png' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/index.css' />
   </head>
   <body>
-    <%- include('header'); -%>
    <div class="container">
-      <% if (messages) { %>
+    <%- include('header'); -%>
+      <% if (messages.length > 0) { %>
         <div class="messages-container">
+          <h2>Posts</h2>
           <% if (!user || !user.member){ %>
-            <h2>Signed out</h2>
             <div class="message-container">
               <div class="message-container-inner-left">
-                <div class="inner-avatar"></div>
+                <div class="inner-avatar">
+                  <img src="/images/courtney.png">
+                  <p><strong class="username">Courtney Gears</strong></p>
+                </div>
               </div>
               <div class="inner-right">
-                <h4 class="message-title">Hello, world!</h4>
-                <p class="message-text">To see additional information, register an account and log in, then answer a question to become a member of Robots Only!</p>
-                <div class="message-info">
-                  <div class="avatar-icon"></div>
-                  <p>Posted by <span class="username">Courtney Gears</span></p>
+                <h4 class="message-title">Hello, Robots!</h4>
+                <p class="message-text">Create an account and log in, then answer a question to become a member of Robots Only! (Organics not allowed.)</p>
+                <!-- <div class="message-info"> -->
                   <p class="date">Some point in time</p>
-                </div>
+                <!-- </div> -->
               </div>
             </div>
           <% } %>
@@ -32,13 +37,14 @@
             <div class="message-container">
               <div class="inner-left">
                 <% if(!user || !user.member) { %>
-                  <h1>Signed out</h1>
-                  <div class="inner-avatar anon">
-                    <img src="/images/courtney.png">
+                
+                  <div class="anon">
+                    <img src="/images/robot.png">
+                    <strong class="message-username">Anonymous</strong>
                   </div>
                 <% } else { %>
                   <% if(user && user.member) { %>
-                    <h1>Signed in</h1>
+                 
                     <div class="inner-avatar">
                       <% if(messages[i].user.avatar === "courtney") { %>
                         <img src="/images/courtney.png">
@@ -53,6 +59,7 @@
                       <% } if(messages[i].user.avatar === "wall-e") { %>
                         <img src="/images/wall-e.png">
                         <% } %>
+                        <strong><%= messages[i].user.username %></strong>
                     </div>
                   <% } %>
                 <% } %>
@@ -60,12 +67,12 @@
 
               <div class="inner-right">
                 <% if(user && user.member) { %>
-                  <h2>Signed in</h2>
+               
                   <h4 class="message-title"><%= messages[i].title %></h4>
                   <p class="message-text"><%= messages[i].text %></p>
-                  <div class="message-info">
-                    <% if(user && user.member) { %>
-                      <div class="avatar-icon">
+                  <!-- <div class="message-info"> -->
+                    <!-- <% if(user && user.member) { %> -->
+                      <!-- <div class="avatar-icon">
                         <% if(messages[i].user.avatar === "courtney") { %>
                           <img src="/images/courtney.png">
                         <% } if(messages[i].user.avatar === "baymax") { %>
@@ -79,17 +86,16 @@
                         <% } if(messages[i].user.avatar === "wall-e") { %>
                           <img src="/images/wall-e.png">
                           <% } %>
-                      </div>
-                   <% } %>
-                    <p>Posted by<span><%= messages[i].user.username %></span></p>
-                    <p class="message-date"><%= messages[i].date %></p>
-                  </div>
+                      </div> -->
+                   <!-- <% } %> -->
+                    <p class="date" title="<%= messages[i].date %>"><%= messages[i].date_formatted %></p>
+                  <!-- </div> -->
                 <% } else { %>
                   <h4 class="message-title"><%= messages[i].title %></h4>
                   <p class="message-text"><%= messages[i].text %></p>
-                  <div>
+                  <!-- <div> -->
                     <% if(user && user.member) { %>
-                      <h1>Signed in</h1>
+                 
                       <div class="avatar-icon">
                         <% if(messages[i].user.avatar === "courtney") { %>
                           <img src="/images/courtney.png">
@@ -108,15 +114,17 @@
                     <% } else { %>
                       <div class="avatar-icon anon"></div>
                     <% } %>
-                    <p>Posted by <span class="message-username">Anonymous</span></p>
-                    <p>Date: Some point in time</p>
-                  </div>
+                    <!-- <p>Posted by <strong class="message-username">Anonymous</strong></p> -->
+                    <!-- <div class="message-info"> -->
+                      <p class="date">Some point in time</p>
+                    <!-- </div> -->
+                  <!-- </div> -->
                 <% } %>
                 <% if(user && user.admin) { %>
-                  <h1>Signed in</h1>
+           
                   <div class="delete-message">
-                    <form action="" method="POST">
-                      <input id="messageID" type="hidden" name="messageId" required value="messsage._id">
+                    <form action="/" method="POST">
+                      <input id="messageId" type="hidden" name="messageId" required value="<%= messages[i]._id %>">
                       <button type="submit">Delete</button>
                     </form>
                   </div>
@@ -125,7 +133,21 @@
             </div>
           <% } %>
         </div>
+      <% } else { %>
+        <div class="messages-container" style="align-items: center;">
+          <h2>No posts yet. Create one now!</h2>
+          <% if(!user) { %>
+            <a href="/log-in">
+              <button style="width: 8rem; padding: 1rem;">Add message</button>
+            </a>
+          <% } else { %>
+            <a href="/create-message">
+              <button style="width: 8rem; padding: 1rem;">Add message</button>
+            </a>
+          <% } %>
+        </div>
       <% } %>
+      <%- include('footer'); -%>
    </div>
   </body>
 </html>
