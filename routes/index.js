@@ -9,6 +9,9 @@ const indexController = require("../controllers/indexController");
 router.get("/", indexController.index);
 router.post("/", messageController.delete_message_post);
 
+//About route
+router.get("/about-us", userController.get_about);
+
 // Sign up routes
 
 router.get("/sign-up", authenticationController.get_signup);
