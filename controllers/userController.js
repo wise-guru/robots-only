@@ -1,6 +1,13 @@
 const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
 
+exports.get_about = (req, res, next) => {
+  return res.render("about_us", {
+    title: "About Us",
+    user: res.locals.currentUser,
+  });
+};
+
 exports.get_member = (req, res, next) => {
   if (!res.locals.currentUser) {
     // User cannot access the members form unless logged in
