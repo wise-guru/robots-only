@@ -6,22 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <link rel='icon' href='/images/courtney.png' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/forms.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    
 </head>
 <body>
     <div class="container">
     <%- include('header'); -%>
     <div class="login-container">
     <h1>Log in</h1>
+    <div>Need to register? <a href="/sign-up">Sign up here! </a></div>
     <div class="login-form-container">
     <form action="/log-in" method="POST" class="login">
-      <div>
+      <div class="field">
       <label for="username">Username</label>
       <input name="username" placeholder="Enter username" type="text"  />
       </div>
 
-      <div>
+      <div class="field">
       <label for="password">Password</label>
       <input name="password" type="password" placeholder="Enter password" />
       </div>
