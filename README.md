@@ -2,7 +2,7 @@
 
 ![Robots Only Gif](https://github.com/wise-guru/robots-only/blob/main/public/images/robots.gif)
 
-Click[here](https://robots-only.onrender.com/) for a live link.
+Click [here](https://robots-only.onrender.com/) for a live link.
 
 ## Technologies Used
 
