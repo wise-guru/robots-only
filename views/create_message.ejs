@@ -6,27 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <link rel='icon' href='/images/courtney.png' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/forms.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <div class="container">
+    <div class="message container">
     <%- include('header'); -%>
+    <div class="message-form-container">
+        <h2><%= title %></h2>
         <form method="post" action="/create-message">
-            <h2><%= title %></h2>
-            <div class="title-container">
-                <label for="messageTitle">Title:</label>
-                <input id="messageTitle" type="text" name="messageTitle" maxlength="50" required>
+            <div class="title-container field">
+                <label for="messageTitle">Title<span title="required">*</span></label>
+                <input id="messageTitle" type="text" name="messageTitle" maxlength="50" required="true" placeholder="Enter Title">
             </div>
-            <div class="text-container">
-                <label for="messageText">Message:</label>
-                <input id="messageText" type="text" name="messageText" required>
+            <div class="text-container field">
+                <label for="messageText">Message<span title="required">*</span></label>
+                <textarea id="messageText"  name="messageText" required="true" rows="5" placeholder="Once upon a time..."></textarea>
             </div>
-            <button type="submit">Submit Message</button>
+            <div class="button-container">
+                <button type="submit">Submit Message</button>
+            </div>   
         </form>
         <% if(locals.error) { %>
             <p><%= error %></p>
         <% } %>
+    </div>
         <%- include('footer'); -%>
     </div>
 </body>
