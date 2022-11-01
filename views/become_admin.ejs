@@ -6,31 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> <%= title %></title>
     <link rel='icon' href='/images/courtney.png' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='icon' href='/images/courtney.png' />
     <link rel='stylesheet' href='/stylesheets/forms.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-    <div class="container">
+    <div class="admin container">
     <%- include('header'); -%>
+    <div class="admin-info-container">
+    <h1><%= title %></h1>
     <% if(!user.admin) { %>
-        <form>
-            <h2><%= title %></h2>
-            <div>
-                <label for="passcode"></label>
-                <input id="passcode" type="password" name="passcode" required>
-
-                <% if(passcodeError) { %>
-                    <p><%= passcodeError %></p>
-                    <button type="submit">Submit Passcode</button>
+        <form method="post" action="/admin">
+            <div class="field">
+                <label for="passcode">Passcode</label>
+                <input id="passcode" type="password" name="passcode" required placeholder="Enter passcode">
+                <div style="height: 1.75rem">
+                <% if(locals.passcodeError) { %>
+                    <div class="error-color"><%= locals.passcodeError %></div>
                 <% } %>
+                </div>
+                <div class="button-container">
+                    <button type="submit">Submit</button>
+                </div>
             </div>
         </form>
     <% } else { %>
-            <div>You're already an admin! Thanks for helping lead this revolution.</div>
+            
+            <h2>You're already an admin! Thanks for helping lead this revolution.</h3>
             <div>
                 <img src="/images/army.avif" style="width: 100%;">
             </div>
         <% } %>
+    </div>
         <%- include('footer'); -%>
     </div>
 </body>
