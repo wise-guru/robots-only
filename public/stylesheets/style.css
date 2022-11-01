@@ -21,10 +21,6 @@ body.dark {
   --text-color: white;
 }
 
-
-
-
-
 :root {
   --red: #C1121F;
   --dark-red: #af021f;
@@ -118,9 +114,6 @@ header .icon {
     flex-direction: column;
     width: 100%;
   }
-  
-
-  
  
   
   .toggle-button {
@@ -153,7 +146,7 @@ header .icon {
 }
 
 
-/* ----------------Footer ---------------*/
+/* ------------------------Footer ----------------------------*/
 
 footer {
   display: flex;
@@ -195,8 +188,6 @@ button:hover {
 }
 
 .about-main-container {
- 
-  /* margin: 1rem; */
   border-radius: 5px;
 }
 
@@ -217,7 +208,7 @@ button:hover {
   color: var(--red);
 }
 
-/*-------------------------Dark mode ------------------*/
+/*--------------------Changing between dark and light themes --------------*/
 
 .sign-up .container, 
 .admin-info-container, 
@@ -271,10 +262,6 @@ textarea {
   .messages-container {
     align-items: center;
     
-  }
-
-  .message-container {
-    /* width: 30rem; */
   }
 } 
 

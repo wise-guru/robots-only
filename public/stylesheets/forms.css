@@ -15,13 +15,11 @@ label {
 }
 
 input[type="text"], input[type="password"] {
-    width: 100%;
     margin-bottom: 1rem;
 }
 
 input[type="text"], input[type="password"] {
     border: none;
-    border-bottom: 1px solid #222;
     background: transparent;
     height: 40px;
     outline: none;
@@ -31,4 +29,30 @@ input[type="text"], input[type="password"] {
 .button-container {
     align-self: center;
 }
+
+.field {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+}
+
+.error-color {
+    color: red;
+}
+
+
+/* For create message box */
+textarea
+{
+width: 200px;
+height: 90px;
+border-radius: 3px;
+border: 1px solid rgb(133, 131, 131);
+padding: 8px;
+font-weight: 200;
+font-size: 15px;
+font-family: Verdana;
+background: transparent;
+}
+
 

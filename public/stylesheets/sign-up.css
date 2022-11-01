@@ -1,4 +1,9 @@
 
+.avatars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+}
 .avatar {
     height: 92px;
     width: 92px;
@@ -19,7 +24,7 @@
   }
 
   [type=radio]:hover + label img {
-    outline: 2px solid #f00;
+    outline: 2px solid  #C1121F;
   }
 
   [type=radio]:active + label img {
@@ -28,7 +33,7 @@
 
   /* CHECKED STYLES */
     [type=radio]:checked + label img {
-    outline: 2px solid #f00;
+    outline: 3px solid #C1121F;
   }
 
 
@@ -42,4 +47,10 @@
   .avatar-select-text {
     text-align: center;
     margin-bottom: 1rem;
+  }
+
+
+
+  button {
+    margin-bottom: 0.5rem;
   }
