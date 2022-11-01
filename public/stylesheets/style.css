@@ -263,5 +263,13 @@ textarea {
     align-items: center;
     
   }
+
+  .about-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 80%;
+  }
 } 
 
