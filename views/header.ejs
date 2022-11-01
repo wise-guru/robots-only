@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="/javascripts/darkmode.js" defer></script>
 </head>
 <body>
     <header>
         <div class="icon">
             <a href="/"><img src="/images/courtney.png" height="48px" width="48px"></a>
-            <div><a href="/">Robots Only</a></div>
+            <div class="title"><a href="/">Robots Only</a></div>
         </div>
         <a href="#" class="toggle-button toggle">
             <span class="bar"></span>
@@ -22,26 +23,26 @@
             <li><a href="/create-message" onclick="">Create Message</a></li>
             <li><a href="/member">Member</a></li>
             <li><a href="/admin">Admin</a></li>
-            <a href="/log-out"><li>Log out</li></a>
+            <li><a href="/log-out">Log out</a></li>
             <!-- <li><a href=""></a></li> -->
         <% } %>
-            <li><a>About us</a></li>
-            <li><button class="theme">Change Theme</button></li>
+            <li><a href="/about-us">About us</a></li>
+            <li><a href="#" class="theme">Change Theme</a></li>
         </ul>
         </div>
     </header>
     <script>
         const toggleButton = document.querySelector(".toggle")
-        const darkMode = document.querySelector(".theme")
+        // const darkMode = document.querySelector(".theme")
         const navbarLinks = document.querySelector(".navbar-links")
     
         toggleButton.addEventListener('click', () => {
             navbarLinks.classList.toggle('active')
         })
 
-        darkMode.addEventListener('click', () => {
-            document.body.classList.toggle('dark')
-        })
+        // darkMode.addEventListener('click', () => {
+        //     document.body.classList.toggle('dark')
+        // })
 
     </script>
 </body>
