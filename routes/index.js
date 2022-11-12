@@ -12,6 +12,10 @@ router.post("/", messageController.delete_message_post);
 //About route
 router.get("/about-us", userController.get_about);
 
+//Profile routes
+router.get("/my-profile/:id", userController.get_profile);
+router.post("/my-profile/:id", userController.post_avatar_update);
+
 // Sign up routes
 
 router.get("/sign-up", authenticationController.get_signup);

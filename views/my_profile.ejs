@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <link rel='stylesheet' href='/stylesheets/sign-up.css' />
+    <link rel='stylesheet' href='/stylesheets/profile.css' />
+</head>
+<body>
+    <div class="container">
+    <%- include('header'); -%>
+    <div class="profile-container">
+    <div class="profile-card">
+    <h1 style="color:white"><%= title %></h1>
+    
+    <div class="avatar-profile info-container">
+        <% if(user.avatar === "courtney") { %>
+          <img src="/images/courtney.png">
+        <% } if(user.avatar === "baymax") { %>
+          <img src="/images/baymax.png">
+        <% } if(user.avatar === "bender") { %>
+          <img src="/images/bender.jpeg">
+        <% } if(user.avatar === "clank") { %>
+          <img src="/images/clank.webp">
+        <% } if(user.avatar === "r2d2") { %>
+          <img src="/images/r2d2.jpg">
+        <% } if(user.avatar === "wall-e") { %>
+          <img src="/images/wall-e.png">
+          <% } %>
+          <div class="username"><%= user.username %></div>
+          <div>Joined: <%= user.date_formatted %></div>
+          <div>Member: <%= user.member_status %></div>
+          <a href="#" class="open-modal">Edit Avatar</a>
+      </div>
+
+      </div> 
+
+      <div class="messages-container info-container">
+      <h2>My Messages</h2>
+      <% for(var i = 0; i < user_messages.length; i++) { %>
+            <div class="message-container">
+                <div class="message-container-inner-left">
+                    <div class="inner-avatar">
+                        <% if(user.avatar === "courtney") { %>
+                            <img src="/images/courtney.png">
+                          <% } if(user.avatar === "baymax") { %>
+                            <img src="/images/baymax.png">
+                          <% } if(user.avatar === "bender") { %>
+                            <img src="/images/bender.jpeg">
+                          <% } if(user.avatar === "clank") { %>
+                            <img src="/images/clank.webp">
+                          <% } if(user.avatar === "r2d2") { %>
+                            <img src="/images/r2d2.jpg">
+                          <% } if(user.avatar === "wall-e") { %>
+                            <img src="/images/wall-e.png">
+                            <% } %>
+                            <p>
+                                <strong class="username"></strong>
+                            </p>
+                    </div>
+                </div>
+                <div class="inner-right">
+                    <h4 class="message-title"><%= user_messages[i].title %></h4>
+                    <p class="message-text"><%= user_messages[i].text %></p>
+                    <p class="date"><%= user_messages[i].date_formatted %></p>
+                </div>
+            </div>
+            <div><%= user_messages[i].lol %></div>
+   
+    <% } %>
+</div>
+    </div>
+    <div>
+        <%- include('footer'); -%>
+    </div>
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div class="x-btn close-modal">+</div>
+            <div class="modal-title">Change Avatar</div>
+            <form action="" method="post" class="avatar-form">
+            
+                <div class="avatars">
+                <input type="radio" name="avatar" id="clank" value="clank"/>
+                  <label for="clank" class="avatar-box">
+                    <img src="/images/clank.webp" alt="Clank" class="avatar"/>
+                  </label>
+
+                  <input type="radio" name="avatar" id="baymax" value="baymax" required>
+                  <label for="baymax"><img src="/images/baymax.png" alt="Baymax" class="avatar"></label>
+                  
+                  <input type="radio" name="avatar" id="bender" value="bender" required>
+                  <label for="bender"><img src="/images/bender.jpeg" alt="Bender" class="avatar"></label>
+                  
+                  <input type="radio" name="avatar" id="r2d2" value="r2d2" required>
+                  <label for="r2d2"><img src="/images/r2d2.jpg" alt="R2-D2" class="avatar"></label>
+                  
+                  <input type="radio" name="avatar" id="wall-e" value="wall-e" required>
+                  <label for="wall-e"><img src="/images/wall-e.png" alt="wall-E" class="avatar"></label>
+                  
+                  <input type="radio" name="avatar" id="courtney" value="courtney" required>
+                  <label for="courtney"><img src="/images/courtney.png" alt="Courtney Gears" class="avatar"></label>
+                  </div>
+
+                  <div class="button-container">
+                    <button >Save</button>
+                  </div>
+
+            </form>
+        
+        </div>
+    </div>
+    </div>
+    <script>
+        const body = document.body;
+        const openModal = document.querySelector(".open-modal")
+        const closeModal = document.querySelector(".close-modal")
+
+        const avatarModal = document.querySelector(".bg-modal")
+    
+        openModal.addEventListener('click', () => {
+            avatarModal.classList.add('active')
+            body.classList.add('modal')
+        })
+
+        closeModal.addEventListener('click', () => {
+            avatarModal.classList.remove('active')
+            body.classList.remove('modal')
+        })
+    </script>
+</body>
+</html>
+
+

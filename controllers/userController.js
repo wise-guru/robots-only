@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");
 
 exports.get_about = (req, res, next) => {
@@ -6,6 +7,43 @@ exports.get_about = (req, res, next) => {
     title: "About Us",
     user: res.locals.currentUser,
   });
+};
+
+exports.get_profile = async (req, res, next) => {
+  if (!res.locals.currentUser) {
+    // User cannot access profiles unless logged in
+    return res.redirect("/log-in");
+  }
+  try {
+    // Populate message with "user" information (reference to user in model)
+    const userMessages = await Message.find({ user: req.user._id }).sort([
+      ["date", "descending"],
+    ]);
+    // .populate("user");
+    // console.log(userMessages);
+    return res.render("my_profile", {
+      title: "My Profile",
+      user: res.locals.currentUser,
+      user_messages: userMessages,
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+exports.post_avatar_update = (req, res, next) => {
+  if (req.body.avatar === undefined) {
+    req.body.avatar = req.user.avatar;
+  }
+  User.findByIdAndUpdate(
+    req.user._id,
+    { $set: { avatar: req.body.avatar } },
+    {},
+    function (err, result) {
+      if (err) return next(err);
+      res.redirect(`/my-profile/${req.user._id}`);
+    }
+  );
 };
 
 exports.get_member = (req, res, next) => {
