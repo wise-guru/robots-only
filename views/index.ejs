@@ -14,7 +14,12 @@
     <%- include('header'); -%>
       <% if (messages.length > 0) { %>
         <div class="messages-container">
-          <h2>Posts</h2>
+          <h2 style="margin-top:8px;">Posts</h2>
+        <% if(user) { %>
+          <a href="/create-message">
+            <button style="width: 8rem; padding: 1rem;">Add message</button>
+          </a>
+        <% } %>
           <% if (!user || !user.member){ %>
             <div class="message-container">
               <div class="message-container-inner-left">
@@ -70,55 +75,11 @@
                
                   <h4 class="message-title"><%= messages[i].title %></h4>
                   <p class="message-text"><%= messages[i].text %></p>
-                  <!-- <div class="message-info"> -->
-                    <!-- <% if(user && user.member) { %> -->
-                      <!-- <div class="avatar-icon">
-                        <% if(messages[i].user.avatar === "courtney") { %>
-                          <img src="/images/courtney.png">
-                        <% } if(messages[i].user.avatar === "baymax") { %>
-                          <img src="/images/baymax.png">
-                        <% } if(messages[i].user.avatar === "bender") { %>
-                          <img src="/images/bender.jpeg">
-                        <% } if(messages[i].user.avatar === "clank") { %>
-                          <img src="/images/clank.webp">
-                        <% } if(messages[i].user.avatar === "r2d2") { %>
-                          <img src="/images/r2d2.jpg">
-                        <% } if(messages[i].user.avatar === "wall-e") { %>
-                          <img src="/images/wall-e.png">
-                          <% } %>
-                      </div> -->
-                   <!-- <% } %> -->
                     <p class="date" title="<%= messages[i].date %>"><%= messages[i].date_formatted %></p>
-                  <!-- </div> -->
                 <% } else { %>
                   <h4 class="message-title"><%= messages[i].title %></h4>
                   <p class="message-text"><%= messages[i].text %></p>
-                  <!-- <div> -->
-                    <% if(user && user.member) { %>
-                 
-                      <div class="avatar-icon">
-                        <% if(messages[i].user.avatar === "courtney") { %>
-                          <img src="/images/courtney.png">
-                        <% } if(messages[i].user.avatar === "baymax") { %>
-                          <img src="/images/baymax.png">
-                        <% } if(messages[i].user.avatar === "bender") { %>
-                          <img src="/images/bender.jpeg">
-                        <% } if(messages[i].user.avatar === "clank") { %>
-                          <img src="/images/clank.webp">
-                        <% } if(messages[i].user.avatar === "r2d2") { %>
-                          <img src="/images/r2d2.jpg">
-                        <% } if(messages[i].user.avatar === "wall-e") { %>
-                          <img src="/images/wall-e.png">
-                          <% } %>
-                      </div>
-                    <% } else { %>
-                      <div class="avatar-icon anon"></div>
-                    <% } %>
-                    <!-- <p>Posted by <strong class="message-username">Anonymous</strong></p> -->
-                    <!-- <div class="message-info"> -->
                       <p class="date">Some point in time</p>
-                    <!-- </div> -->
-                  <!-- </div> -->
                 <% } %>
                 <% if(user && user.admin) { %>
            

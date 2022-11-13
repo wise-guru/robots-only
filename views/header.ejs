@@ -20,7 +20,8 @@
             <li><a href="/log-in">Log in</a></li>
             <li><a href="/sign-up">Sign up</a></li>
         <% } else { %>
-            <li><a href="/create-message" onclick="">Create Message</a></li>
+            <li><a href="/create-message">Create Message</a></li>
+            <li><a href="/my-profile/<%= locals.user._id%>" >My profile</a></li>
             <li><a href="/member">Member</a></li>
             <li><a href="/admin">Admin</a></li>
             <li><a href="/log-out">Log out</a></li>
@@ -33,17 +34,12 @@
     </header>
     <script>
         const toggleButton = document.querySelector(".toggle")
-        // const darkMode = document.querySelector(".theme")
+
         const navbarLinks = document.querySelector(".navbar-links")
     
         toggleButton.addEventListener('click', () => {
             navbarLinks.classList.toggle('active')
         })
-
-        // darkMode.addEventListener('click', () => {
-        //     document.body.classList.toggle('dark')
-        // })
-
     </script>
 </body>
 </html>
