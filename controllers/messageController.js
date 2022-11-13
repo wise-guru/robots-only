@@ -50,6 +50,6 @@ exports.delete_message_post = (req, res, next) => {
   // Remove the message using the id from the database
   Message.findByIdAndRemove(req.body.messageId, function deleteMessage(err) {
     if (err) return next(err);
-    res.redirect("/");
+    res.redirect("back");
   });
 };

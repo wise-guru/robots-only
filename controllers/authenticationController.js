@@ -31,18 +31,21 @@ exports.post_signup = [
     }),
 
   async (req, res, next) => {
+    const isUserTaken = await User.find({ username: req.body.username });
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       console.log("ERROR!");
       return res.render("sign-up", {
         title: "Sign Up",
+        errors: errors.array(),
+        success: [],
         passwordConfirmationError: "Passwords must be the same",
       });
     }
 
     try {
-      const isUserInDB = await User.find({ username: req.body.username });
-      if (isUserInDB.length > 0)
+      if (isUserTaken.length > 0)
         return res.render("sign-up", {
           title: "Sign Up",
           error: "User already exists",
@@ -56,6 +59,7 @@ exports.post_signup = [
           member: false,
           admin: false,
           avatar: req.body.avatar,
+          date: Date.now(),
         }).save((err) => (err ? next(err) : res.redirect("/")));
       });
     } catch (err) {
