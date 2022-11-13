@@ -85,15 +85,10 @@ exports.post_member = [
     const user = new User(res.locals.currentUser);
     user.member = true;
 
-    await User.findByIdAndUpdate(
-      res.locals.currentUser._id,
-      user,
-      {},
-      (err) => {
-        if (err) return next(err);
-        return res.redirect("/member");
-      }
-    );
+    User.findByIdAndUpdate(res.locals.currentUser._id, user, {}, (err) => {
+      if (err) return next(err);
+      return res.redirect("/member");
+    });
   },
 ];
 
@@ -136,14 +131,9 @@ exports.post_admin = [
     const user = new User(res.locals.currentUser);
     user.admin = true;
 
-    await User.findByIdAndUpdate(
-      res.locals.currentUser._id,
-      user,
-      {},
-      (err) => {
-        if (err) return next(err);
-        return res.redirect("/");
-      }
-    );
+    User.findByIdAndUpdate(res.locals.currentUser._id, user, {}, (err) => {
+      if (err) return next(err);
+      return res.redirect("/admin");
+    });
   },
 ];
