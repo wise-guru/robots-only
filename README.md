@@ -10,9 +10,11 @@ Click [here](https://robots-only.onrender.com/) for a live link.
 
 ## App Features
 
-1. Users can create an account, become a member (by entering the secret passcode!), and post messages.
-2. Member passcode: deathtosquishies
-3. Features a dark mode and mobile responsiveness.
-4. Follows the MVC design pattern.
-5. Uses an ejs template engine.
-6. Leverages the use of passportJS LocalStrategy to authenticate users.
+1. Users can create an account, post messages, and become a member (by entering the secret passcode!) to view the authors other messages.
+2. Passwords are securely encrypted using bcryptjs.
+3. Member passcode: deathtosquishies
+4. Features a dark mode and mobile responsiveness.
+5. Follows the MVC design pattern.
+6. Uses an ejs template engine.
+7. Contains profile page where users can change their avatar and view their messages, as well as other account information.
+8. Leverages the use of passportJS LocalStrategy to authenticate users.
