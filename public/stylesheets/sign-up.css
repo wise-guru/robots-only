@@ -33,7 +33,7 @@
 
   /* CHECKED STYLES */
     [type=radio]:checked + label img {
-    outline: 3px solid #C1121F;
+    outline: 4px solid #C1121F;
   }
 
 

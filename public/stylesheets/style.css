@@ -194,7 +194,8 @@ button:hover {
 
 
 .admin-info-container,
-.member-info-container
+.member-info-container,
+.info-container
  {
   display: flex;
   flex-direction: column;
@@ -216,13 +217,16 @@ button:hover {
 .login-container,
 .about-main-container,
 .message-form-container,
-.message-container
+.info-container,
+.modal-content,
+.message-container,
+.msg-title
  {
   color: var(--text-color);
   background-color: var(--container-background);
 }
 
-.messages-container {
+.messages-container, .profile-container {
   color: var(--text-color);
 }
 
@@ -264,12 +268,18 @@ textarea {
     
   }
 
+  .about-info-box {
+    width: 80%;
+  }
+
   .about-main-container {
     display: flex;
     justify-content: center;
     align-items: center;
     align-self: center;
     width: 80%;
+    font-size: 1.5rem;
+    max-width: 2000px;
   }
 } 
 
