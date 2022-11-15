@@ -8,6 +8,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const bcrypt = require("bcryptjs");
+var flash = require("connect-flash");
 const session = require("express-session"); // Dependency of passport.js
 
 // Establish database connection
@@ -28,6 +29,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash());
 // app.use(compression()); // Compress all routes
 // app.use(helmet());
 app.use(express.static(path.join(__dirname, "public")));
