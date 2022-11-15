@@ -71,13 +71,37 @@ exports.post_signup = [
 exports.get_login = (req, res) => {
   // If user is already logged in, redirect them to the homepage
   if (res.locals.currentUser) return res.redirect("/");
-  res.render("log-in", { title: "Login" });
+  res.render("log-in", { title: "Login", error: req.flash("error") });
 };
 
-exports.post_login = passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/log-in",
-});
+exports.post_login = [
+  body("username")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Enter a username")
+    .escape(),
+  body("password")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Enter a password")
+    .escape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render("login", {
+        username: req.body.username,
+        errors: errors.array(),
+      });
+    }
+    next();
+  },
+
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/log-in",
+    failureFlash: true,
+  }),
+];
 
 exports.get_logout = (req, res, next) => {
   req.logout(function (err) {

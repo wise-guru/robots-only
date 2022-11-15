@@ -45,43 +45,50 @@
         <div class="message-container">
             <h2 class="msg-title">My Messages (<%= user_messages.length %>)</h2>
         </div>
+        <% if(user_messages.length > 0) { %>
 
-      <% for(var i = 0; i < user_messages.length; i++) { %>
-            <div class="message-container">
-                <div class="message-container-inner-left">
-                    <div class="inner-avatar">
-                        <% if(user.avatar === "courtney") { %>
-                            <img src="/images/courtney.png">
-                          <% } if(user.avatar === "baymax") { %>
-                            <img src="/images/baymax.png">
-                          <% } if(user.avatar === "bender") { %>
-                            <img src="/images/bender.jpeg">
-                          <% } if(user.avatar === "clank") { %>
-                            <img src="/images/clank.webp">
-                          <% } if(user.avatar === "r2d2") { %>
-                            <img src="/images/r2d2.jpg">
-                          <% } if(user.avatar === "wall-e") { %>
-                            <img src="/images/wall-e.png">
-                            <% } %>
-                            <p>
-                                <strong class="username"></strong>
-                            </p>
+            <% for(var i = 0; i < user_messages.length; i++) { %>
+                <div class="message-container">
+                    <div class="message-container-inner-left">
+                        <div class="inner-avatar">
+                            <% if(user.avatar === "courtney") { %>
+                                <img src="/images/courtney.png">
+                              <% } if(user.avatar === "baymax") { %>
+                                <img src="/images/baymax.png">
+                              <% } if(user.avatar === "bender") { %>
+                                <img src="/images/bender.jpeg">
+                              <% } if(user.avatar === "clank") { %>
+                                <img src="/images/clank.webp">
+                              <% } if(user.avatar === "r2d2") { %>
+                                <img src="/images/r2d2.jpg">
+                              <% } if(user.avatar === "wall-e") { %>
+                                <img src="/images/wall-e.png">
+                                <% } %>
+                                <p>
+                                    <strong class="username"></strong>
+                                </p>
+                        </div>
                     </div>
+                    <div class="inner-right">
+                        <h4 class="message-title"><%= user_messages[i].title %></h4>
+                        <p class="message-text"><%= user_messages[i].text %></p>
+                        <p class="date"><%= user_messages[i].date_formatted %></p>
+                        <div class="delete-message">
+                            <form action="/" method="POST">
+                              <input id="messageId" type="hidden" name="messageId" required value="<%= user_messages[i]._id %>">
+                              <button type="submit">Delete</button>
+                            </form>
+                          </div>
+                    </div>      
                 </div>
-                <div class="inner-right">
-                    <h4 class="message-title"><%= user_messages[i].title %></h4>
-                    <p class="message-text"><%= user_messages[i].text %></p>
-                    <p class="date"><%= user_messages[i].date_formatted %></p>
-                    <div class="delete-message">
-                        <form action="/" method="POST">
-                          <input id="messageId" type="hidden" name="messageId" required value="<%= user_messages[i]._id %>">
-                          <button type="submit">Delete</button>
-                        </form>
-                      </div>
-                </div>      
-            </div>
-   
-    <% } %>
+       
+        <% }%>
+    
+        <% } else { %>
+            <h2 style="padding: 8px;">No messages yet. Create one now!</h2>
+        <% } %>
+
+     
 </div>
     </div>
     <div>

@@ -10,6 +10,10 @@ form, .login-form-container {
     justify-content: center;
 }
 
+form.login p {
+    padding: 0.5rem 1rem;
+}
+
 label {
     font-weight: bold;
 }
