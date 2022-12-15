@@ -88,7 +88,7 @@ exports.post_login = [
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.render("login", {
+      res.render("log-in", {
         username: req.body.username,
         errors: errors.array(),
       });
